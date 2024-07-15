@@ -34,7 +34,6 @@ FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
 
-# Ensure sqlite is copied to the final image
-COPY --from=build /app/Api/sqlite .
+
 
 ENTRYPOINT ["dotnet", "Api.dll"]
