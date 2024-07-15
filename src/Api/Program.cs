@@ -1,5 +1,6 @@
 using Api.Endpoints;
 using Microsoft.OpenApi.Models;
+using Shared.Infrastructure.Web;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
@@ -11,6 +12,8 @@ builder.Services.AddSwaggerGen(c =>
 {
   c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bla API", Version = "v1" });
 });
+
+builder.Services.AddJwt(builder.Configuration);
 
 WebApplication app = builder.Build();
 
