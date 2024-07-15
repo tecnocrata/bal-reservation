@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dependencies Analyzer</title>
+    <link rel="stylesheet" href="https://unpkg.com/tailwindcss@2.2.19/dist/tailwind.min.css"/>
+    <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700" rel="stylesheet">
+<style>
+    body { font-family: 'Source Sans Pro', sans-serif; color: #4a5568; margin: 0; display: flex; flex-direction: column; min-height: 100vh; }
+    .header { background-color: #667eea; color: #fafafa; padding: 20px; text-align: center; flex-shrink: 0; }
+    .content { flex: 1; display: flex; flex-direction: column; padding: 0; overflow: hidden; }
+    .footer { background-color: #718096; color: #ffffff; text-align: center; padding: 10px; flex-shrink: 0; }
+    .rust-logo { height: 50px; }
+</style>
+    <style>
+        #graph-container { flex: 1; display: flex; flex-direction: column; width: 100%; overflow: hidden; border: 1px solid #ccc; }
+        #graph { flex: 1; width: 100%; height: 100% display: flex; }
+    </style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/viz.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/viz.js/2.1.2/full.render.js" integrity="sha512-1zKK2bG3QY2JaUPpfHZDUMe3dwBwFdCDwXQ01GrKSd+/l0hqPbF+aak66zYPUZtn+o2JYi1mjXAqy5mW04v3iA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdn.jsdelivr.net/npm/svg-pan-zoom@3.6.1/dist/svg-pan-zoom.min.js"></script>
+</head>
+<body>
+    <div class="header">
+        <h1>Dependencies Analyzer</h1>
+        <p>This page was generated automatically.</p>
+    </div>
+<div class="content">
+            <div id="graph-container">
+                <div id="graph"></div>
+            </div>
+        </div>
+    <div class="footer">
+        <p>Generated on: 2024-07-15T19:26:48Z</p>
+        <p>Everything was generated using Rust.</p>
+        <img src="https://www.rust-lang.org/logos/rust-logo-blk.svg" alt="Rust Logo" class="rust-logo mx-auto">
+    </div>
+<script>
+    var viz = new Viz();
+    var graphvizData = `
+digraph G {
+	node [color=grey, style=filled];
+	node [fontname="Verdana", size="30,30"];
+    P1 [label="Shared.Infrastructure.csproj", style=filled, fillcolor="#A7D7FD"]
+    P2 [label="Shared.Infrastructure.Web.csproj", style=filled, fillcolor="#A7D7FD"]
+    P3 [label="Shared.Core.csproj", style=filled, fillcolor="#FBFDB8"]
+    P4 [label="Api.csproj", style=filled, fillcolor="#A7D7FD"]
+    P5 [label="Reservations.Core.csproj", style=filled, fillcolor="#FBFDB8"]
+    P1 -> P3
+    P2 -> P3
+    P2 -> P1
+    P4 -> P2
+    P5 -> P3
+	subgraph cluster_key {
+		label="Layer Rules";
+    L1 [label="core", style=filled, fillcolor="#FBFDB8"]
+    L2 [label="infrastructure", style=filled, fillcolor="#A7D7FD"]
+    L3 [label="usecase", style=filled, fillcolor="#FEA29C"]
+    L1 -> L1
+    L2 -> L1
+    L2 -> L2
+    L2 -> L3
+    L3 -> L1
+    L3 -> L3
+	}
+}`;
+    viz.renderSVGElement(graphvizData)
+            .then(function(element) {
+                var graph = document.getElementById('graph');
+                graph.appendChild(element);
+                var svg = graph.querySelector('svg');
+                svg.setAttribute('preserveAspectRatio', 'none');
+                svg.style.width = '100%';
+                svg.style.height = '100%';
+                svgPanZoom(svg, {
+                    zoomEnabled: true,
+                    controlIconsEnabled: true,
+                    fit: true,
+                    center: true,
+                    minZoom: 0.5,
+                    maxZoom: 10
+                });
+                function resizeSvg() {
+                    var container = document.getElementById('graph-container');
+                    svg.style.width = container.clientWidth + 'px';
+                    svg.style.height = container.clientHeight + 'px';
+                }
+                window.addEventListener('resize', resizeSvg);
+                resizeSvg();
+            })
+            .catch(error => {
+                console.error('Error rendering graph:', error);
+            });
+</script>
+</body>
+</html>

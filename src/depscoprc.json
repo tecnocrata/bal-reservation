@@ -8,27 +8,27 @@
       "projects": [".*Tests.*\\.csproj$"]
     },
     "namespaces": {
-      "core": ".*\\.Entities(\\..*)?$",
-      "io": ".*\\.IO(\\..*)?$",
+      "core": ".*\\.Core(\\..*)?$",
+      "infrastructure": ".*\\.Infrastructure(\\..*)?$",
       "usecase": ".*\\.UseCases(\\..*)?$"
     },
     "pattern": "regex",
     "projects": {
-      "core": ".*\\.Entities.*\\.csproj$",
-      "io": ".*\\.IO.*\\.csproj$",
+      "core": ".*\\.Core.*\\.csproj$",
+      "infrastructure": [".*\\.Infrastructure.*\\.csproj$", "Api.*\\.csproj$"],
       "usecase": ".*\\.UseCases.*\\.csproj$"
     }
   },
   "global": {
     "colors": {
       "core": "#FBFDB8",
-      "io": "#A7D7FD",
+      "infrastructure": "#A7D7FD",
       "usecase": "#FEA29C"
     },
-    "layers": ["core", "io", "usecase"],
+    "layers": ["core", "infrastructure", "usecase"],
     "rules": {
       "core": ["core"],
-      "io": ["core", "io", "usecase"],
+      "infrastructure": ["core", "infrastructure", "usecase"],
       "usecase": ["core", "usecase"]
     },
     "toggles": {

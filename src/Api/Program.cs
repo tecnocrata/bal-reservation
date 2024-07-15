@@ -13,10 +13,13 @@ builder.Services.AddSwaggerGen(c =>
   c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bla API", Version = "v1" });
 });
 
+builder.Services.AddRestaurantServices();
+
 builder.Services.AddJwt(builder.Configuration);
 
 WebApplication app = builder.Build();
 
+app.MapAuthorizationEndpoints();
 app.MapReservationEndpoints();
 
 if (app.Environment.IsDevelopment())
