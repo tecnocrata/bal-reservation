@@ -9,6 +9,7 @@
 
 <ItemGroup>
     <PackageReference Include="Riok.Mapperly" />
+    <PackageReference Include="Swashbuckle.AspNetCore" />
 </ItemGroup>
 
 <ItemGroup>
