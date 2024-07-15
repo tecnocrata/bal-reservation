@@ -1,0 +1,41 @@
+{
+  "csharp": {
+    "case_sensitive": true,
+    "exclude": {
+      "files": [],
+      "folders": ["bin", "obj"],
+      "namespaces": [],
+      "projects": [".*Tests.*\\.csproj$"]
+    },
+    "namespaces": {
+      "core": ".*\\.Entities(\\..*)?$",
+      "io": ".*\\.IO(\\..*)?$",
+      "usecase": ".*\\.UseCases(\\..*)?$"
+    },
+    "pattern": "regex",
+    "projects": {
+      "core": ".*\\.Entities.*\\.csproj$",
+      "io": ".*\\.IO.*\\.csproj$",
+      "usecase": ".*\\.UseCases.*\\.csproj$"
+    }
+  },
+  "global": {
+    "colors": {
+      "core": "#FBFDB8",
+      "io": "#A7D7FD",
+      "usecase": "#FEA29C"
+    },
+    "layers": ["core", "io", "usecase"],
+    "rules": {
+      "core": ["core"],
+      "io": ["core", "io", "usecase"],
+      "usecase": ["core", "usecase"]
+    },
+    "toggles": {
+      "show_invalid_dependencies": true,
+      "show_recognized_nodes": true,
+      "show_unrecognized_nodes": true,
+      "show_valid_dependencies": true
+    }
+  }
+}

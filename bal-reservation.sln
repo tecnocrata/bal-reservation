@@ -1,0 +1,47 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.002.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{19476F78-2F0A-455D-A962-72B84B258236}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{A010ADD7-B829-4F1E-98EA-1DE6B4D4E260}"
+	ProjectSection(SolutionItems) = preProject
+		src\depscoprc.json = src\depscoprc.json
+		src\Directory.Build.props = src\Directory.Build.props
+		src\docker-compose.yml = src\docker-compose.yml
+		src\Directory.Packages.props = src\Directory.Packages.props
+		src\Dockerfile = src\Dockerfile
+		src\nuget.config = src\nuget.config
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Api", "src\Api\Api.csproj", "{70036F22-89BC-414D-8473-6ECBD47516C6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{C9333D26-F9B7-4B0D-803B-82079E205303}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{9AA2DDB4-4416-40CA-83A2-9A304DFB1CCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{70036F22-89BC-414D-8473-6ECBD47516C6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70036F22-89BC-414D-8473-6ECBD47516C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70036F22-89BC-414D-8473-6ECBD47516C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70036F22-89BC-414D-8473-6ECBD47516C6}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70036F22-89BC-414D-8473-6ECBD47516C6} = {19476F78-2F0A-455D-A962-72B84B258236}
+		{C9333D26-F9B7-4B0D-803B-82079E205303} = {19476F78-2F0A-455D-A962-72B84B258236}
+		{9AA2DDB4-4416-40CA-83A2-9A304DFB1CCF} = {19476F78-2F0A-455D-A962-72B84B258236}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {F8617770-7C7C-40E1-8B97-F64A2F0EAA91}
+	EndGlobalSection
+EndGlobal

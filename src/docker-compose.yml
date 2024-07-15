@@ -1,0 +1,54 @@
+services:
+  mssql:
+    container_name: bal-mssql
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    user: root
+    ports:
+      - 1433:1433
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=Your_password123
+      - MSSQL_SA_PASSWORD=Your_password123
+    volumes:
+      - mssql-data:/var/opt/mssql/data
+      - mssql-log:/var/opt/mssql/log
+      - mssql-secrets:/var/opt/mssql/secrets
+    restart: unless-stopped
+    healthcheck:
+      test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Your_password123" -Q "SELECT 1"
+      interval: 10s
+      timeout: 3s
+      retries: 3
+      start_period: 10s
+
+volumes:
+  mssql-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${MSSQL_DATA_PATH}
+      o: bind
+  mssql-log:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${MSSQL_LOG_PATH}
+      o: bind
+  mssql-secrets:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${MSSQL_SECRETS_PATH}
+      o: bind
+  redis-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${REDIS_DATA_PATH}
+      o: bind
+  elasticsearch-data:
+    driver: local
+    driver_opts:
+      type: none
+      device: ${ELASTICSEARCH_DATA_PATH}
+      o: bind

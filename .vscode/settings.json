@@ -1,0 +1,35 @@
+{
+  "rest-client.environmentVariables": {
+    "$shared": {
+      "baseUrl": "http://localhost:7184/api"
+    },
+    "local": {
+      "baseUrl": "http://localhost:7184/api",
+      "city": "London",
+      "country": "UK",
+      "searchTerm": "wpf"
+    },
+    "dev": {
+      "baseUrl": "dotnetnew-api.azurewebsites.net",
+      "searchTerm": "mads"
+    },
+    "prod": {
+      "baseUrl": "http://localhost",
+      "city": "London",
+      "country": "UK",
+      "searchTerm": "wpf"
+    }
+  },
+  "rust-analyzer.checkOnSave": false,
+  "explorer.excludeGitIgnore": false,
+  "workbench.editor.enablePreview": true,
+  "git.openDiffOnClick": true,
+  "workbench.editor.customLabels.patterns": {
+    "**/*IO/**": "${filename} - IO",
+    "**/*IO.Web/**": "${filename} - Web",
+    "**/*BAL.Api/**": "${filename} - Web",
+    "**/*UseCases/**": "${filename} - UseCases",
+    "**/*Entities/**": "${filename} - Core",
+    "**/*ci-cd/**": "${filename} - Devops"
+  }
+}
