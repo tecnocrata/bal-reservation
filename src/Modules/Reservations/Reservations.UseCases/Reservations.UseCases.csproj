@@ -6,5 +6,10 @@
     <Nullable>enable</Nullable>
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Shared\Shared.Core\Shared.Core.csproj" />
+    <ProjectReference Include="..\Reservations.Core\Reservations.Core.csproj" />
+  </ItemGroup>
 
 </Project>

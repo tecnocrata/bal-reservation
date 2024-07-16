@@ -19,4 +19,9 @@ public class Reservation
     Name = name;
     NumberOfGuests = numberOfGuests;
   }
+
+  public void Cancel()
+  {
+    Status = new ReservationStatus(ReservationStatusEnum.Cancelled);
+  }
 }
