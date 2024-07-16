@@ -24,11 +24,8 @@ public class JwtTokenProvider : ITokenProvider
             new(JwtRegisteredClaimNames.Sub, user.Id.ToString()),
             new(JwtRegisteredClaimNames.Email, user.UserName)
         };
-
-    var signingCredentials = new SigningCredentials(
-        new SymmetricSecurityKey(
-            Encoding.UTF8.GetBytes(options.SecretKey!)),
-        SecurityAlgorithms.HmacSha256);
+    var signingKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(options.SecretKey!));
+    var signingCredentials = new SigningCredentials(signingKey, SecurityAlgorithms.HmacSha256);
 
     var token = new JwtSecurityToken(
         options.Issuer,
