@@ -1,10 +1,11 @@
 using Reservations.Core;
 using Reservations.Core.ValueObjects;
 using Shared.Core.Bus.Command;
+using Shared.Core.Results;
 
 namespace Reservations.UseCases;
 
-public class CancelCommandHandler : ICommandHandler<CancelCommand>
+public class CancelCommandHandler : ICommandHandler<CancelCommand, Result>
 {
   private readonly IReservationRepository _reservationRepository;
 
@@ -13,16 +14,17 @@ public class CancelCommandHandler : ICommandHandler<CancelCommand>
     _reservationRepository = reservationRepository;
   }
 
-  public async Task Handle(CancelCommand command)
+  public async Task<Result> Handle(CancelCommand command)
   {
     var reservation = await _reservationRepository.GetByIdAsync(new ReservationId(command.ReservationId));
-    // if (reservation == null)
-    // {
-    //   throw new EntityNotFoundException(command.ReservationId, nameof(Reservation));
-    // }
+    if (reservation == null)
+    {
+      return Result.Failure(new Error("reservation-not-found", "Reservation not found"));
+      // throw new EntityNotFoundException(command.ReservationId, nameof(Reservation));
+    }
 
     reservation.Cancel();
-    await _reservationRepository.CancelAsync(reservation);
+    return await _reservationRepository.UpdateAsync(reservation);
   }
 
 }

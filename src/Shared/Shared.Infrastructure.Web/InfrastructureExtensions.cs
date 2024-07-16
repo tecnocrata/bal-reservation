@@ -4,6 +4,8 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using Reservations.Core;
+using Reservations.Infrastructure.Persistence;
 using Shared.Core.Bus.Command;
 using Shared.Core.Bus.Query;
 using Shared.Infrastructure.Bus;
@@ -34,9 +36,12 @@ public static class InfrastructureExtensions
     services.AddScoped<IQueryBus, InMemoryQueryBus>();
     services.AddScoped<ITokenProvider, JwtTokenProvider>();
     services.AddScoped<IUserRepository, UserRepository>();
+    services.AddScoped<IReservationRepository, ReservationRepository>();
 
     services.AddCommandServices(AssemblyLoader.GetInstance("SystemUsers.UseCases"));
+    services.AddCommandServices(AssemblyLoader.GetInstance("Reservations.UseCases"));
     services.AddQueryServices(AssemblyLoader.GetInstance("SystemUsers.UseCases"));
+    services.AddCommandServices(AssemblyLoader.GetInstance("Reservations.UseCases"));
   }
 
   public static void UseRestaurantServices(this IApplicationBuilder app, IConfiguration configuration)

@@ -1,7 +1,7 @@
 using System.Threading.Tasks;
 
 namespace Shared.Core.Bus.Command;
-public interface ICommandHandler<in TCommand> where TCommand : ICommand
+public interface ICommandHandler<in TCommand, TResponse> where TCommand : ICommand
 {
-  Task Handle(TCommand command);
+  Task<TResponse> Handle(TCommand command);
 }
