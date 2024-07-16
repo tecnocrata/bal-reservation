@@ -21,6 +21,8 @@ builder.Services.AddJwt(builder.Configuration);
 
 WebApplication app = builder.Build();
 
+app.UseRestaurantServices(app.Configuration);
+
 app.MapAuthorizationEndpoints();
 app.MapReservationEndpoints();
 

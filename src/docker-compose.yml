@@ -10,9 +10,9 @@ services:
       - SA_PASSWORD=Your_password123
       - MSSQL_SA_PASSWORD=Your_password123
     volumes:
-      - mssql-data:/var/opt/mssql/data
-      - mssql-log:/var/opt/mssql/log
-      - mssql-secrets:/var/opt/mssql/secrets
+      - ./data/mssql/data:/var/opt/mssql/data
+      - ./data/mssql/log:/var/opt/mssql/log
+      - ./data/mssql/secrets:/var/opt/mssql/secrets
     restart: unless-stopped
     healthcheck:
       test: /opt/mssql-tools/bin/sqlcmd -S localhost -U sa -P "Your_password123" -Q "SELECT 1"
@@ -23,32 +23,7 @@ services:
 
 volumes:
   mssql-data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MSSQL_DATA_PATH}
-      o: bind
   mssql-log:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MSSQL_LOG_PATH}
-      o: bind
   mssql-secrets:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${MSSQL_SECRETS_PATH}
-      o: bind
   redis-data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${REDIS_DATA_PATH}
-      o: bind
   elasticsearch-data:
-    driver: local
-    driver_opts:
-      type: none
-      device: ${ELASTICSEARCH_DATA_PATH}
-      o: bind

@@ -1,0 +1,7 @@
+USE Restaurant;
+
+CREATE TABLE Users (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    UserName NVARCHAR(100) NOT NULL,
+    Password NVARCHAR(100) NOT NULL
+);

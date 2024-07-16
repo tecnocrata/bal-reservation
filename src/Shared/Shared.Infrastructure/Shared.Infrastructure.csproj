@@ -14,6 +14,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
+    <PackageReference Include="dbup" />
   </ItemGroup>
+
+  <ItemGroup>
+  <EmbeddedResource Include="Persistence\SqlScripts\*.sql" />
+</ItemGroup>
 
 </Project>

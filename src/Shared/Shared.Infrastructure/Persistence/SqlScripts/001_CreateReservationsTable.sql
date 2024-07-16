@@ -1,0 +1,9 @@
+USE Restaurant;
+
+CREATE TABLE Reservations (
+    Id UNIQUEIDENTIFIER PRIMARY KEY,
+    Status NVARCHAR(50) NOT NULL,
+    Date DATETIME NOT NULL,
+    Name NVARCHAR(100) NOT NULL,
+    NumberOfGuests INT NOT NULL
+);
