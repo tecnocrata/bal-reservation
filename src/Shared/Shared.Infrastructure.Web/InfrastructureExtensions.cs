@@ -41,7 +41,7 @@ public static class InfrastructureExtensions
     services.AddCommandServices(AssemblyLoader.GetInstance("SystemUsers.UseCases"));
     services.AddCommandServices(AssemblyLoader.GetInstance("Reservations.UseCases"));
     services.AddQueryServices(AssemblyLoader.GetInstance("SystemUsers.UseCases"));
-    services.AddCommandServices(AssemblyLoader.GetInstance("Reservations.UseCases"));
+    services.AddQueryServices(AssemblyLoader.GetInstance("Reservations.UseCases"));
   }
 
   public static void UseRestaurantServices(this IApplicationBuilder app, IConfiguration configuration)
