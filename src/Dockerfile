@@ -9,13 +9,12 @@ WORKDIR /app
 # main project
 COPY ["Api/Api.csproj", "Api/"]
 COPY ["nuget.config", "Api/nuget.config"]
-COPY ["Api/sqlite", "Api/"]
 
 # Copy csproj files of additional projects
 COPY ["Modules/Reservations/", "Modules/Reservations/"]
 COPY ["Modules/SystemUsers/", "Modules/SystemUsers/"]
 COPY ["Shared/", "Shared/"]
-COPY ["Shared/Shared/", "Shared/Shared/"]
+# COPY ["Shared/Shared/", "Shared/Shared/"]
 
 RUN dotnet nuget locals all --clear && dotnet restore "Api/Api.csproj" --configfile Api/nuget.config -v d
 

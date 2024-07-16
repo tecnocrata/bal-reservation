@@ -21,6 +21,20 @@ services:
       retries: 3
       start_period: 10s
 
+  webapp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    depends_on:
+      mssql:
+        condition: service_healthy
+    ports:
+      - 5002:8080
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__BlaConnection=Server=bal-mssql;Database=Restaurant;User Id=sa;Password=Your_password123;Encrypt=False;Trusted_Connection=False;MultipleActiveResultSets=True;Connection Timeout=30;
+    restart: unless-stopped
+
 volumes:
   mssql-data:
   mssql-log:

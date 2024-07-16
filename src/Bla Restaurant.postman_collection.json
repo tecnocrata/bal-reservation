@@ -1,0 +1,388 @@
+{
+	"info": {
+		"_postman_id": "4925027f-a467-4b82-8502-89f7fbd4c144",
+		"name": "Bla Restaurant",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "3354"
+	},
+	"item": [
+		{
+			"name": "Local",
+			"item": [
+				{
+					"name": "Reservations",
+					"item": [
+						{
+							"name": "Cancel Reservation",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var tk = pm.environment.get(\"token\");",
+											"console.log(\"Token used:\", tk);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5001/api/reservation/747eb357-ee00-48a5-9ea2-1e3de48f3a77",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"reservation",
+										"747eb357-ee00-48a5-9ea2-1e3de48f3a77"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "One Reservation",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5001/api/reservation/747eb357-ee00-48a5-9ea2-1e3de48f3a74",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"reservation",
+										"747eb357-ee00-48a5-9ea2-1e3de48f3a74"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5001/api/reservation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"reservation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Make Reservation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"John Doe\",\n    \"numberOfPeople\": 4,\n    \"reservationDate\": \"2024-07-25T19:30:00.000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5001/api/reservation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5001",
+									"path": [
+										"api",
+										"reservation"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Get the response body as text",
+									"var responseText = pm.response.text();",
+									"",
+									"// Remove the quotes if present",
+									"var token = responseText.replace(/^\"|\"$/g, '');",
+									"",
+									"// Store the token in an environment variable",
+									"pm.environment.set(\"token\", token);",
+									"",
+									"// You can also print the response in the Postman console to verify",
+									"console.log(\"Token stored:\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"enrique.ortuno\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5001/authorization/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5001",
+							"path": [
+								"authorization",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Container",
+			"item": [
+				{
+					"name": "Reservations",
+					"item": [
+						{
+							"name": "Cancel Reservation",
+							"event": [
+								{
+									"listen": "prerequest",
+									"script": {
+										"exec": [
+											"var tk = pm.environment.get(\"token\");",
+											"console.log(\"Token used:\", tk);"
+										],
+										"type": "text/javascript",
+										"packages": {}
+									}
+								}
+							],
+							"request": {
+								"method": "DELETE",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5002/api/reservation/747eb357-ee00-48a5-9ea2-1e3de48f3a77",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"api",
+										"reservation",
+										"747eb357-ee00-48a5-9ea2-1e3de48f3a77"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "One Reservation",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTQ2MjJhNi1kOWY4LTQwODItYTBhYi1lY2NmYjczOGViMWUiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTY1MzkyLCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.y2If8N3thqyuTchPVQrCNO2U9WtgYaWailrAMeUB6Yk",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5002/api/reservation/747eb357-ee00-48a5-9ea2-1e3de48f3a74",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"api",
+										"reservation",
+										"747eb357-ee00-48a5-9ea2-1e3de48f3a74"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "All Reservations",
+							"request": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"url": {
+									"raw": "http://localhost:5002/api/reservation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"api",
+										"reservation"
+									]
+								}
+							},
+							"response": []
+						},
+						{
+							"name": "Make Reservation",
+							"request": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Authorization",
+										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"type": "text"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"name\":\"John Doe\",\n    \"numberOfPeople\": 4,\n    \"reservationDate\": \"2024-07-25T19:30:00.000\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "http://localhost:5002/api/reservation",
+									"protocol": "http",
+									"host": [
+										"localhost"
+									],
+									"port": "5002",
+									"path": [
+										"api",
+										"reservation"
+									]
+								}
+							},
+							"response": []
+						}
+					]
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Get the response body as text",
+									"var responseText = pm.response.text();",
+									"",
+									"// Remove the quotes if present",
+									"var token = responseText.replace(/^\"|\"$/g, '');",
+									"",
+									"// Store the token in an environment variable",
+									"pm.environment.set(\"token\", token);",
+									"",
+									"// You can also print the response in the Postman console to verify",
+									"console.log(\"Token stored:\", token);"
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"userName\":\"enrique.ortuno\",\n    \"password\":\"123456\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:5002/authorization/token",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "5002",
+							"path": [
+								"authorization",
+								"token"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	]
+}
