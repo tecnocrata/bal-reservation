@@ -1,4 +1,4 @@
-﻿namespace Shared.Infrastructure.Web;
+﻿namespace Shared.Infrastructure;
 
 public class JwtOptions
 {

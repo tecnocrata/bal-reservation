@@ -29,8 +29,10 @@ if (app.Environment.IsDevelopment())
     // c.RoutePrefix = string.Empty;
   });
 
-  // app.UseAuthentication();
+}
 
-  // app.UseAuthorization();
+// app.UseAuthentication();
 
-  await app.RunAsync();
+// app.UseAuthorization();
+
+await app.RunAsync();

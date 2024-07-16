@@ -2,5 +2,5 @@ namespace SystemUsers.Core;
 
 public interface ITokenProvider
 {
-  Task<string> GenerateToken(User user);
+  string GenerateToken(User user);
 }

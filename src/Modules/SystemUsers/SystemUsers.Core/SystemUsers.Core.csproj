@@ -6,12 +6,4 @@
     <AssemblyName>$(MSBuildProjectName)</AssemblyName>
   </PropertyGroup>
 
-  <ItemGroup>
-    
-  </ItemGroup>
-
-  <ItemGroup>
-    
-  </ItemGroup>
-
 </Project>

@@ -15,6 +15,7 @@
 
 <ItemGroup>
   <ProjectReference Include="..\Shared\Shared.Infrastructure.Web\Shared.Infrastructure.Web.csproj" />
+  <ProjectReference Include="..\Modules\SystemUsers\SytemUsers.UseCases\SystemUsers.UseCases.csproj" />
 </ItemGroup>
 
 </Project>

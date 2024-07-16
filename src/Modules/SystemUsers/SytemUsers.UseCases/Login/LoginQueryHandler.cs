@@ -23,9 +23,7 @@ public class LoginQueryHandler : IQueryHandler<LoginQuery, Result<string>>
       return Result.Failure<string>(new Error("user-not-found", "User not found"));
     }
 
-    var token = await _tokenProvider.GenerateToken(user);
+    var token = _tokenProvider.GenerateToken(user);
     return token!;
-    // user.SetToken(token);
-    // return await _userRepository.Update(user);
   }
 }

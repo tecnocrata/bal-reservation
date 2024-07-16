@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 
-namespace Shared.Infrastructure.Web;
+namespace Shared.Infrastructure;
 
 public class JwtBearerOptionsSetup : IPostConfigureOptions<JwtBearerOptions>
 {
