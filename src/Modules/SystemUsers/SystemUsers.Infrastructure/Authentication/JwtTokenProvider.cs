@@ -38,8 +38,7 @@ public class JwtTokenProvider : ITokenProvider
         DateTime.UtcNow.AddHours(1),
         signingCredentials);
 
-    string tokenValue = new JwtSecurityTokenHandler()
-        .WriteToken(token);
+    string tokenValue = new JwtSecurityTokenHandler().WriteToken(token);
 
     return tokenValue;
   }

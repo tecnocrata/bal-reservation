@@ -1,4 +1,5 @@
 using Api.Endpoints;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.OpenApi.Models;
 using Shared.Infrastructure.Web;
 
@@ -10,6 +11,9 @@ builder.Services.AddSwaggerGen(c =>
 {
   c.SwaggerDoc("v1", new OpenApiInfo { Title = "Bla API", Version = "v1" });
 });
+
+// builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+//   .AddJwtBearer();
 
 builder.Services.AddRestaurantServices();
 
@@ -31,8 +35,8 @@ if (app.Environment.IsDevelopment())
 
 }
 
-// app.UseAuthentication();
+app.UseAuthentication();
 
-// app.UseAuthorization();
+app.UseAuthorization();
 
 await app.RunAsync();

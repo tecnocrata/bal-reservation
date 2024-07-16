@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared.Core\Shared.Core.csproj" />
     <ProjectReference Include="..\Shared.Infrastructure\Shared.Infrastructure.csproj" />
+    <ProjectReference Include="..\..\Modules\SystemUsers\SystemUsers.Infrastructure\SystemUsers.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

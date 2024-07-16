@@ -7,21 +7,19 @@ namespace Shared.Infrastructure;
 
 public class JwtBearerOptionsSetup : IPostConfigureOptions<JwtBearerOptions>
 {
-  private readonly JwtOptions _jwtOptions;
+  private readonly JwtOptions options;
 
   public JwtBearerOptionsSetup(IOptions<JwtOptions> jwtOptions)
   {
-    _jwtOptions = jwtOptions.Value;
+    options = jwtOptions.Value;
   }
 
   public void PostConfigure(string? name, JwtBearerOptions options)
   {
-    options.TokenValidationParameters.ValidIssuer = _jwtOptions.Issuer;
-    options.TokenValidationParameters.ValidAudience = _jwtOptions.Audience;
-    if (_jwtOptions.SecretKey is not null)
-    {
-      options.TokenValidationParameters.IssuerSigningKey =
-          new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_jwtOptions.SecretKey));
-    }
+    options.TokenValidationParameters.ValidIssuer = this.options.Issuer;
+    options.TokenValidationParameters.ValidAudience = this.options.Audience;
+
+    options.TokenValidationParameters.IssuerSigningKey =
+        new SymmetricSecurityKey(Encoding.UTF8.GetBytes(this.options.SecretKey!));
   }
 }
