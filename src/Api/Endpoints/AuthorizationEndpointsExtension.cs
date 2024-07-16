@@ -5,6 +5,6 @@ public static class AuthorizationEndpointsExtension
 {
   public static void MapAuthorizationEndpoints(this WebApplication app)
   {
-    app.MapPost("/authorization/token", (int id) => { return Results.Ok(); }).WithName("Authorization").WithOpenApi();
+    app.MapPost("/authorization/token", (string userName, string password) => { return Results.Ok(); }).WithName("Authorization").WithOpenApi();
   }
 }
