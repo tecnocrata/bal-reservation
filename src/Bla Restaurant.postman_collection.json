@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "4925027f-a467-4b82-8502-89f7fbd4c144",
+		"_postman_id": "ea12aec5-cb20-4a31-b4b6-1e29cac6c47d",
 		"name": "Bla Restaurant",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "3354"
@@ -32,7 +32,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -59,7 +59,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -86,7 +86,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -112,7 +112,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -149,17 +149,16 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Get the response body as text",
-									"var responseText = pm.response.text();",
+									"var jsonData = JSON.parse(pm.response.text());",
+									"console.log(\"Response:\", jsonData);",
+									"if (jsonData && jsonData.token) {",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"    pm.environment.set(\"token\", jsonData.token);",
+									"    // You can also print the response in the Postman console to verify",
+									"    console.log(\"Token stored:\", jsonData.token);",
+									"}",
 									"",
-									"// Remove the quotes if present",
-									"var token = responseText.replace(/^\"|\"$/g, '');",
-									"",
-									"// Store the token in an environment variable",
-									"pm.environment.set(\"token\", token);",
-									"",
-									"// You can also print the response in the Postman console to verify",
-									"console.log(\"Token stored:\", token);"
+									""
 								],
 								"type": "text/javascript",
 								"packages": {}
@@ -221,7 +220,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -248,7 +247,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiI4NTQ2MjJhNi1kOWY4LTQwODItYTBhYi1lY2NmYjczOGViMWUiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTY1MzkyLCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.y2If8N3thqyuTchPVQrCNO2U9WtgYaWailrAMeUB6Yk",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -275,7 +274,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -301,7 +300,7 @@
 								"header": [
 									{
 										"key": "Authorization",
-										"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJjMGNkMzgzYy1lYzMwLTQyMWUtOGU2NS1iNDNlNjk2NGIxYzIiLCJlbWFpbCI6ImVucmlxdWUub3J0dW5vIiwiZXhwIjoxNzIxMTYwMzg5LCJpc3MiOiJCbGEiLCJhdWQiOiJCbGEifQ.zcNbzvv_vLELFzJ-s73u3xNmO7IK_GAx955ER1qBpBc",
+										"value": "Bearer {{token}}",
 										"type": "text"
 									}
 								],
@@ -338,17 +337,14 @@
 							"listen": "test",
 							"script": {
 								"exec": [
-									"// Get the response body as text",
-									"var responseText = pm.response.text();",
-									"",
-									"// Remove the quotes if present",
-									"var token = responseText.replace(/^\"|\"$/g, '');",
-									"",
-									"// Store the token in an environment variable",
-									"pm.environment.set(\"token\", token);",
-									"",
-									"// You can also print the response in the Postman console to verify",
-									"console.log(\"Token stored:\", token);"
+									"var jsonData = JSON.parse(pm.response.text());",
+									"console.log(\"Response:\", jsonData);",
+									"if (jsonData && jsonData.token) {",
+									"    pm.globals.set(\"token\", jsonData.token);",
+									"    pm.environment.set(\"token\", jsonData.token);",
+									"    // You can also print the response in the Postman console to verify",
+									"    console.log(\"Token stored:\", jsonData.token);",
+									"}"
 								],
 								"type": "text/javascript",
 								"packages": {}

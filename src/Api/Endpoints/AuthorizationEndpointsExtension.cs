@@ -12,7 +12,7 @@ public static class AuthorizationEndpointsExtension
   {
     app.MapPost("/authorization/token", async ([FromBody] LoginRequest request, IQueryBus queryBus) =>
     {
-      var result = await queryBus.Ask<Result<string>>(new LoginQuery { UserName = request.UserName, Password = request.Password });
+      var result = await queryBus.Ask<Result<LoginResponse>>(new LoginQuery { UserName = request.UserName, Password = request.Password });
       if (result.IsFailure)
       {
         return Results.BadRequest(result.Error);
