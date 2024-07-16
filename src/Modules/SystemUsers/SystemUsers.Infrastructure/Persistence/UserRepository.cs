@@ -1,17 +1,45 @@
+using Microsoft.Data.SqlClient;
+using Shared.Infrastructure.Persistence;
 using SystemUsers.Core;
 
 namespace SystemUsers.Infrastructure;
 
 public class UserRepository : IUserRepository
 {
-  // private readonly SystemUsersDbContext _dbContext;
+  private readonly DbConnectionFactory _connectionFactory;
 
-  // public UserRepository(SystemUsersDbContext dbContext)
-  // {
-  //   _dbContext = dbContext;
-  // }
-  public Task<User> CheckUserCredentials(string userName, string password)
+  public UserRepository(DbConnectionFactory connectionFactory)
   {
-    return Task.FromResult(new User(userName, password));
+    _connectionFactory = connectionFactory;
+  }
+
+  public async Task<User?> CheckUserCredentials(string userName, string password)
+  {
+    using (var connection = _connectionFactory.CreateConnection())
+    {
+      await connection.OpenAsync();
+
+      string query = "SELECT UserName, Password FROM Users WHERE UserName = @UserName";
+      using (var command = new SqlCommand(query, connection))
+      {
+        command.Parameters.AddWithValue("@UserName", userName);
+
+        using (var reader = await command.ExecuteReaderAsync())
+        {
+          if (await reader.ReadAsync())
+          {
+            var storedUserName = reader.GetString(reader.GetOrdinal("UserName"));
+            var storedHashedPassword = reader.GetString(reader.GetOrdinal("Password"));
+
+            if (PasswordHasher.VerifyPassword(password, storedHashedPassword))
+            {
+              return new User(storedUserName, storedHashedPassword);
+            }
+          }
+        }
+      }
+    }
+
+    return null;
   }
 }

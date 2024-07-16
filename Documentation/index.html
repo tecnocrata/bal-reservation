@@ -32,7 +32,7 @@
             </div>
         </div>
     <div class="footer">
-        <p>Generated on: 2024-07-16T09:39:49Z</p>
+        <p>Generated on: 2024-07-16T11:03:11Z</p>
         <p>Everything was generated using Rust.</p>
         <img src="https://www.rust-lang.org/logos/rust-logo-blk.svg" alt="Rust Logo" class="rust-logo mx-auto">
     </div>
@@ -42,23 +42,29 @@
 digraph G {
 	node [color=grey, style=filled];
 	node [fontname="Verdana", size="30,30"];
-    P1 [label="Shared.Infrastructure.Web.csproj", style=filled, fillcolor="#A7D7FD"]
-    P2 [label="Shared.Core.csproj", style=filled, fillcolor="#FBFDB8"]
-    P3 [label="Api.csproj", style=filled, fillcolor="#A7D7FD"]
-    P4 [label="Reservations.Core.csproj", style=filled, fillcolor="#FBFDB8"]
-    P5 [label="Reservations.UseCases.csproj", style=filled, fillcolor="#FEA29C"]
-    P6 [label="SystemUsers.UseCases.csproj", style=filled, fillcolor="#FEA29C"]
-    P7 [label="SystemUsers.Core.csproj", style=filled, fillcolor="#FBFDB8"]
-    P8 [label="SystemUsers.Infrastructure.csproj", style=filled, fillcolor="#A7D7FD"]
-    P1 -> P2
-    P1 -> P8
-    P3 -> P1
-    P3 -> P6
+    P1 [label="Shared.Infrastructure.csproj", style=filled, fillcolor="#A7D7FD"]
+    P2 [label="Shared.Infrastructure.Web.csproj", style=filled, fillcolor="#A7D7FD"]
+    P3 [label="Shared.Core.csproj", style=filled, fillcolor="#FBFDB8"]
+    P4 [label="Api.csproj", style=filled, fillcolor="#A7D7FD"]
+    P5 [label="Reservations.Infrastructure.csproj", style=filled, fillcolor="#A7D7FD"]
+    P6 [label="Reservations.Core.csproj", style=filled, fillcolor="#FBFDB8"]
+    P7 [label="Reservations.UseCases.csproj", style=filled, fillcolor="#FEA29C"]
+    P8 [label="SystemUsers.UseCases.csproj", style=filled, fillcolor="#FEA29C"]
+    P9 [label="SystemUsers.Core.csproj", style=filled, fillcolor="#FBFDB8"]
+    P10 [label="SystemUsers.Infrastructure.csproj", style=filled, fillcolor="#A7D7FD"]
+    P1 -> P9
+    P2 -> P3
+    P2 -> P1
+    P2 -> P10
     P4 -> P2
-    P6 -> P2
-    P6 -> P7
-    P7 -> P2
-    P8 -> P7
+    P4 -> P8
+    P5 -> P6
+    P6 -> P3
+    P8 -> P3
+    P8 -> P9
+    P9 -> P3
+    P10 -> P9
+    P10 -> P1
 	subgraph cluster_key {
 		label="Layer Rules";
     L1 [label="core", style=filled, fillcolor="#FBFDB8"]

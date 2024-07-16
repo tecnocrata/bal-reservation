@@ -8,17 +8,10 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="dbup" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" />
-    <PackageReference Include="Microsoft.Data.SqlClient" />
   </ItemGroup>
-
   <ItemGroup>
-    <ProjectReference Include="..\..\Modules\SystemUsers\SystemUsers.Core\SystemUsers.Core.csproj" />
+    <ProjectReference Include="..\Reservations.Core\Reservations.Core.csproj" />
   </ItemGroup>
-
-  <ItemGroup>
-  <EmbeddedResource Include="Persistence\SqlScripts\*.sql" />
-</ItemGroup>
 
 </Project>

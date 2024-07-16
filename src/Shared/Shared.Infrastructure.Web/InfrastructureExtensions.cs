@@ -29,6 +29,7 @@ public static class InfrastructureExtensions
 
   public static void AddRestaurantServices(this IServiceCollection services)
   {
+    services.AddSingleton<DbConnectionFactory>();
     services.AddScoped<ICommandBus, InMemoryCommandBus>();
     services.AddScoped<IQueryBus, InMemoryQueryBus>();
     services.AddScoped<ITokenProvider, JwtTokenProvider>();

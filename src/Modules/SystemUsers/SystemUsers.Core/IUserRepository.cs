@@ -2,5 +2,5 @@ namespace SystemUsers.Core;
 
 public interface IUserRepository
 {
-  Task<User> CheckUserCredentials(string userName, string password);
+  Task<User?> CheckUserCredentials(string userName, string password);
 }
