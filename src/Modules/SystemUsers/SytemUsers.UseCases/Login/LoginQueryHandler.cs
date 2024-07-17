@@ -26,6 +26,5 @@ public class LoginQueryHandler : IQueryHandler<LoginQuery, Result<LoginResponse>
 
     var token = _tokenProvider.GenerateToken(user);
     return Result.Success(new LoginResponse(token));
-    // return token!;
   }
 }

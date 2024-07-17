@@ -73,22 +73,4 @@ public class InMemoryCommandBus : ICommandBus
 
     return wrappedHandlers;
   }
-
-  // private IEnumerable<CommandHandlerWrapper<TResponse>> GetWrappedHandlers<TResponse>(ICommand command)
-  // {
-  //   var handlerType = typeof(ICommandHandler<,>).MakeGenericType(command.GetType());
-  //   var wrapperType = typeof(CommandHandlerWrapper<,>).MakeGenericType(command.GetType());
-
-  //   var handlers = _provider.GetService(typeof(IEnumerable<>).MakeGenericType(handlerType)) as IEnumerable<object>;
-  //   if (handlers == null)
-  //   {
-  //     throw new InvalidOperationException($"Handlers for command type {command.GetType().Name} not found");
-  //   }
-
-  //   var wrappedHandlers = _commandHandlers.GetOrAdd(command.GetType(), _ => handlers
-  //       .Select(handler => (CommandHandlerWrapper<TResponse>)(Activator.CreateInstance(wrapperType) ?? throw new InvalidOperationException($"Unable to create instance of {wrapperType.Name}")))
-  //       .ToList());
-
-  //   return wrappedHandlers;
-  // }
 }
