@@ -54,7 +54,7 @@ The Hotel Reservation Service allows users to manage hotel reservations through 
 
 ## Architecture Overview
 
-The service is built using the principles of Clean Architecture, Domain-Driven Design (DDD), and Slicing Architecture. These architectural patterns ensure that the application is scalable, maintainable, and testable by organizing code into distinct layers with clear responsibilities. A graphical description of how the layers are organized can be found in the [Architecture Graph](Documentation/index.html).
+The service is built using the principles of Clean Architecture, Domain-Driven Design (DDD), and Slicing Architecture. These architectural patterns ensure that the application is scalable, maintainable, and testable by organizing code into distinct layers with clear responsibilities. A graphical description of how the layers are organized can be found in the <a href="Documentation/index.html" target="_blank">Architecture Graph</a>.
 
 ## Use Cases
 
