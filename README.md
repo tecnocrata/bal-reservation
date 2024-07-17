@@ -7,6 +7,7 @@ This service is designed to manage hotel reservations. It provides functionaliti
 - [Hotel Reservation Service](#hotel-reservation-service)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
+  - [Architecture Overview](#architecture-overview)
   - [Use Cases](#use-cases)
     - [Make Reservation](#make-reservation)
       - [Endpoint](#endpoint)
@@ -50,6 +51,10 @@ The Hotel Reservation Service allows users to manage hotel reservations through 
 - Listing all reservations
 - Retrieving details of a specific reservation
 - Authenticating users
+
+## Architecture Overview
+
+The service is built using the principles of Clean Architecture, Domain-Driven Design (DDD), and Slicing Architecture. These architectural patterns ensure that the application is scalable, maintainable, and testable by organizing code into distinct layers with clear responsibilities. A graphical description of how the layers are organized can be found in the [Architecture Graph](Documentation/index.html).
 
 ## Use Cases
 
