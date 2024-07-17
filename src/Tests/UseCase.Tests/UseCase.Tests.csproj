@@ -28,6 +28,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Modules\Reservations\Reservations.Core\Reservations.Core.csproj" />
     <ProjectReference Include="..\..\Modules\Reservations\Reservations.UseCases\Reservations.UseCases.csproj" />
+    <ProjectReference Include="..\..\Modules\SystemUsers\SytemUsers.UseCases\SystemUsers.UseCases.csproj" />
   </ItemGroup>
 
   <Target Name="CopyTestHostDepsJson" AfterTargets="Build">
