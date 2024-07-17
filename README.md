@@ -1,10 +1,10 @@
-# Hotel Reservation Service
+# Restaurant Reservation Service
 
-This service is designed to manage hotel reservations. It provides functionalities for making, canceling, and listing reservations, as well as user authentication for secure access. The service is built using C# and follows a clean architecture with clearly defined use cases.
+This service is designed to manage Restaurant reservations. It provides functionalities for making, canceling, and listing reservations, as well as user authentication for secure access. The service is built using C# and follows a clean architecture with clearly defined use cases.
 
 ## Table of Contents
 
-- [Hotel Reservation Service](#hotel-reservation-service)
+- [Restaurant Reservation Service](#Restaurant-reservation-service)
   - [Table of Contents](#table-of-contents)
   - [Overview](#overview)
   - [Architecture Overview](#architecture-overview)
@@ -44,7 +44,7 @@ This service is designed to manage hotel reservations. It provides functionaliti
 
 ## Overview
 
-The Hotel Reservation Service allows users to manage hotel reservations through a set of RESTful API endpoints. The service handles the following scenarios:
+The Restaurant Reservation Service allows users to manage Restaurant reservations through a set of RESTful API endpoints. The service handles the following scenarios:
 
 - Creating new reservations
 - Canceling existing reservations
