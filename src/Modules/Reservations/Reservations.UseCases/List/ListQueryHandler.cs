@@ -18,6 +18,10 @@ public class ListQueryHandler : IQueryHandler<ListQuery, Result<ListResponse>>
   public async Task<Result<ListResponse>> Handle(ListQuery query)
   {
     var reservations = await _reservationRepository.ListAll();
+    if (reservations.IsFailure)
+    {
+      return Result.Failure<ListResponse>(reservations.Error);
+    }
 
     var response = new ListResponse
     {
@@ -30,6 +34,6 @@ public class ListQueryHandler : IQueryHandler<ListQuery, Result<ListResponse>>
       }).ToList()
     };
 
-    return Result<ListResponse>.Success(response);
+    return Result.Success(response);
   }
 }

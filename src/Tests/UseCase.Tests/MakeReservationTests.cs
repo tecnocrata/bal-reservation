@@ -20,10 +20,10 @@ public class MakeCommandHandlerTests
   {
     // Arrange
     var command = new MakeCommand(
-      Guid.NewGuid().ToString(),
-      DateTime.UtcNow.AddDays(-1),
-      2,
-      "John Doe"
+        Guid.NewGuid().ToString(),
+        DateTime.UtcNow.AddDays(-1),
+        2,
+        "John Doe"
     );
     // Act
     var handleResult = await _handler.Handle(command);
@@ -33,16 +33,15 @@ public class MakeCommandHandlerTests
     Assert.Equal("reservation-date-in-the-past", handleResult.Error.Code);
   }
 
-
   [Fact]
   public async Task Handle_ReturnsFailure_WhenReservationDateIsTooFarInTheFuture()
   {
     // Arrange
     var command = new MakeCommand(
-      Guid.NewGuid().ToString(),
-      DateTime.UtcNow.AddDays(-1),
-      2,
-      "John Doe"
+        Guid.NewGuid().ToString(),
+        DateTime.UtcNow.AddDays(31),
+        2,
+        "John Doe"
     );
 
     // Act
@@ -50,7 +49,7 @@ public class MakeCommandHandlerTests
 
     // Assert
     Assert.True(result.IsFailure);
-    Assert.Equal("reservation-date-in-the-past", result.Error.Code);
+    Assert.Equal("reservation-date-too-far", result.Error.Code);
   }
 
   [Fact]
@@ -58,10 +57,10 @@ public class MakeCommandHandlerTests
   {
     // Arrange
     var command = new MakeCommand(
-      Guid.NewGuid().ToString(),
-      DateTime.UtcNow.AddDays(-1).AddHours(9),
-      2,
-      "John Doe"
+        Guid.NewGuid().ToString(),
+        DateTime.UtcNow.AddDays(1).Date.AddHours(18), // 6 PM, outside allowed range
+        2,
+        "John Doe"
     );
 
     // Act
@@ -69,7 +68,7 @@ public class MakeCommandHandlerTests
 
     // Assert
     Assert.True(result.IsFailure);
-    Assert.Equal("reservation-date-in-the-past", result.Error.Code);
+    Assert.Equal("reservation-time-outside-range", result.Error.Code);
   }
 
   [Fact]
@@ -77,10 +76,10 @@ public class MakeCommandHandlerTests
   {
     // Arrange
     var command = new MakeCommand(
-      Guid.NewGuid().ToString(),
-      DateTime.UtcNow.AddDays(1).AddHours(20),
-      2,
-      "John Doe"
+        Guid.NewGuid().ToString(),
+        DateTime.UtcNow.AddDays(1).Date.AddHours(20), // 8 PM, within allowed range
+        2,
+        "John Doe"
     );
 
     _reservationRepositoryMock.Setup(r => r.MakeAsync(It.IsAny<Reservation>()))
