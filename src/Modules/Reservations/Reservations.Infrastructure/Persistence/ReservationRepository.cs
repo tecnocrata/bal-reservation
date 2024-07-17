@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using Reservations.Core;
 using Reservations.Core.ValueObjects;
 using Shared.Core.Results;
@@ -22,17 +22,25 @@ public class ReservationRepository : IReservationRepository
       await connection.OpenAsync();
 
       string query = @"
-                UPDATE Reservations
-                SET Status = @Status, Date = @Date, Name = @Name, NumberOfGuests = @NumberOfGuests
-                WHERE Id = @Id";
+                        UPDATE Reservations
+                        SET Status = @Status, Date = @Date, Name = @Name, NumberOfGuests = @NumberOfGuests
+                        WHERE Id = @Id";
 
-      using (var command = new SqlCommand(query, connection))
+      using (var command = connection.CreateCommand())
       {
-        command.Parameters.AddWithValue("@Id", reservation.Id.Value);
-        command.Parameters.AddWithValue("@Status", reservation.Status.ToString());
-        command.Parameters.AddWithValue("@Date", reservation.Date.Value);
-        command.Parameters.AddWithValue("@Name", reservation.Name.Value);
-        command.Parameters.AddWithValue("@NumberOfGuests", reservation.NumberOfGuests.Value);
+        command.CommandText = query;
+        command.Parameters.Add(CreateParameter(command, "@Id", reservation.Id.Value));
+        command.Parameters.Add(CreateParameter(command, "@Status", reservation.Status.ToString()));
+        command.Parameters.Add(CreateParameter(command, "@Date", reservation.Date.Value));
+        command.Parameters.Add(CreateParameter(command, "@Name", reservation.Name.Value));
+        command.Parameters.Add(CreateParameter(command, "@NumberOfGuests", reservation.NumberOfGuests.Value));
+
+        // Log the command text and parameters
+        Console.WriteLine("Executing Command: " + command.CommandText);
+        foreach (DbParameter parameter in command.Parameters)
+        {
+          Console.WriteLine($"{parameter.ParameterName}: {parameter.Value}");
+        }
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
         return rowsAffected > 0 ? Result.Success() : Result.Failure(new Error("reservation-not-found", "Reservation not found"));
@@ -47,9 +55,10 @@ public class ReservationRepository : IReservationRepository
       await connection.OpenAsync();
 
       string query = "SELECT Id, Status, Date, Name, NumberOfGuests FROM Reservations WHERE Id = @Id";
-      using (var command = new SqlCommand(query, connection))
+      using (var command = connection.CreateCommand())
       {
-        command.Parameters.AddWithValue("@Id", id.Value);
+        command.CommandText = query;
+        command.Parameters.Add(CreateParameter(command, "@Id", id.Value));
 
         using (var reader = await command.ExecuteReaderAsync())
         {
@@ -77,16 +86,17 @@ public class ReservationRepository : IReservationRepository
       await connection.OpenAsync();
 
       string query = @"
-                INSERT INTO Reservations (Id, Status, Date, Name, NumberOfGuests)
-                VALUES (@Id, @Status, @Date, @Name, @NumberOfGuests)";
+                    INSERT INTO Reservations (Id, Status, Date, Name, NumberOfGuests)
+                    VALUES (@Id, @Status, @Date, @Name, @NumberOfGuests)";
 
-      using (var command = new SqlCommand(query, connection))
+      using (var command = connection.CreateCommand())
       {
-        command.Parameters.AddWithValue("@Id", reservation.Id.Value);
-        command.Parameters.AddWithValue("@Status", reservation.Status.ToString());
-        command.Parameters.AddWithValue("@Date", reservation.Date.Value);
-        command.Parameters.AddWithValue("@Name", reservation.Name.Value);
-        command.Parameters.AddWithValue("@NumberOfGuests", reservation.NumberOfGuests.Value);
+        command.CommandText = query;
+        command.Parameters.Add(CreateParameter(command, "@Id", reservation.Id.Value));
+        command.Parameters.Add(CreateParameter(command, "@Status", reservation.Status.ToString()));
+        command.Parameters.Add(CreateParameter(command, "@Date", reservation.Date.Value));
+        command.Parameters.Add(CreateParameter(command, "@Name", reservation.Name.Value));
+        command.Parameters.Add(CreateParameter(command, "@NumberOfGuests", reservation.NumberOfGuests.Value));
 
         await command.ExecuteNonQueryAsync();
       }
@@ -102,8 +112,9 @@ public class ReservationRepository : IReservationRepository
       await connection.OpenAsync();
 
       string query = "SELECT Id, Status, Date, Name, NumberOfGuests FROM Reservations";
-      using (var command = new SqlCommand(query, connection))
+      using (var command = connection.CreateCommand())
       {
+        command.CommandText = query;
         using (var reader = await command.ExecuteReaderAsync())
         {
           while (await reader.ReadAsync())
@@ -122,5 +133,13 @@ public class ReservationRepository : IReservationRepository
     }
 
     return Result.Success(reservations.AsEnumerable());
+  }
+
+  private DbParameter CreateParameter(DbCommand command, string name, object value)
+  {
+    var parameter = command.CreateParameter();
+    parameter.ParameterName = name;
+    parameter.Value = value;
+    return parameter;
   }
 }

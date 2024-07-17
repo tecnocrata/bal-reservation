@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+using System.Data.Common;
 using Shared.Infrastructure.Persistence;
 using SystemUsers.Core;
 
@@ -20,9 +20,10 @@ public class UserRepository : IUserRepository
       await connection.OpenAsync();
 
       string query = "SELECT UserName, Password FROM Users WHERE UserName = @UserName";
-      using (var command = new SqlCommand(query, connection))
+      using (var command = connection.CreateCommand())
       {
-        command.Parameters.AddWithValue("@UserName", userName);
+        command.CommandText = query;
+        command.Parameters.Add(CreateParameter(command, "@UserName", userName));
 
         using (var reader = await command.ExecuteReaderAsync())
         {
@@ -41,5 +42,13 @@ public class UserRepository : IUserRepository
     }
 
     return null;
+  }
+
+  private DbParameter CreateParameter(DbCommand command, string name, object value)
+  {
+    var parameter = command.CreateParameter();
+    parameter.ParameterName = name;
+    parameter.Value = value;
+    return parameter;
   }
 }
