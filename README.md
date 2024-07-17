@@ -35,7 +35,10 @@ This service is designed to manage hotel reservations. It provides functionaliti
       - [Handler](#handler-4)
       - [Example Request](#example-request-4)
   - [Installation](#installation)
-  - [Usage](#usage)
+  - [Running the Application](#running-the-application)
+    - [Using dotnet run](#using-dotnet-run)
+    - [Using Docker Compose](#using-docker-compose)
+  - [Importing Postman Collection](#importing-postman-collection)
   - [Tests](#tests)
 
 ## Overview
@@ -168,27 +171,48 @@ This endpoint allows users to authenticate by providing their username and passw
 
 1. Clone the repository:
    ```sh
-   git clone https://github.com/yourusername/hotel-reservation-service.git
+   git clone https://github.com/yourusername/bal-reservation.git
    ```
 2. Navigate to the project directory:
    ```sh
-   cd hotel-reservation-service
+   cd bal-reservation
    ```
 3. Install the required dependencies:
    ```sh
    dotnet restore
    ```
 
-## Usage
+## Running the Application
 
-1. Build the project:
+### Using dotnet run
+
+1. Ensure that you have Docker running on your machine.
+2. Start the SQL Server using Docker Compose:
    ```sh
-   dotnet build
+   docker-compose up -d
    ```
-2. Run the project:
+3. Run the application:
    ```sh
-   dotnet run
+   dotnet run --project src/Api/Api.csproj
    ```
+4. The application will be available at `http://localhost:5001/`.
+
+### Using Docker Compose
+
+1. Ensure that you have Docker running on your machine.
+2. Navigate to the `src` folder:
+   ```sh
+   cd src
+   ```
+3. Build and start the services using Docker Compose:
+   ```sh
+   docker-compose up --build
+   ```
+4. The application will be available at `http://localhost:5002/`.
+
+## Importing Postman Collection
+
+You can import the Postman collection provided in the `src` folder to test the API endpoints. The collection file is named `Bla Restaurant.postman_collection.json`.
 
 ## Tests
 
