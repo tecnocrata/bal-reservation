@@ -1,6 +1,6 @@
 # Hotel Reservation Service
 
-This service is designed to manage hotel reservations. It provides functionalities for making, canceling, and listing reservations, as well as user authentication for secure access. The service is built using C# and follows a clean architecture with clearly defined use cases and handlers.
+This service is designed to manage hotel reservations. It provides functionalities for making, canceling, and listing reservations, as well as user authentication for secure access. The service is built using C# and follows a clean architecture with clearly defined use cases.
 
 ## Table of Contents
 
